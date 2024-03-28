@@ -1,77 +1,76 @@
-import Image from "next/image";
-import { useState } from "react";
-import Swipe from "react-easy-swipe";
-import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
+import React from 'react';
+import CarouselProvider from "react-responsive-carousel"
+import 'react-responsive-carousel/lib/styles/carousel.min.css'; // Include styles
 
-/**
- * Carousel component for nextJS and Tailwind.
- * Using external library react-easy-swipe for swipe gestures on mobile devices (optional)
- *
- * @param images - Array of images with src and alt attributes
- * @returns React component
- */
-export default function Carousel({ images }) {
-  const [currentSlide, setCurrentSlide] = useState(0);
-
-  const handleNextSlide = () => {
-    let newSlide = currentSlide === images.length - 1 ? 0 : currentSlide + 1;
-    setCurrentSlide(newSlide);
-  };
-
-  const handlePrevSlide = () => {
-    let newSlide = currentSlide === 0 ? images.length - 1 : currentSlide - 1;
-    setCurrentSlide(newSlide);
-  };
-
+const Carousel = ({ items, showArrows = true, showIndicators = true }) => {
   return (
-    <div className="relative">
-      <AiOutlineLeft
-        onClick={handlePrevSlide}
-        className="absolute left-0 m-auto text-5xl inset-y-1/2 cursor-pointer text-gray-400 z-20"
-      />
-      <div className="w-full h-[50vh] flex overflow-hidden relative m-auto">
-        <Swipe
-          onSwipeLeft={handleNextSlide}
-          onSwipeRight={handlePrevSlide}
-          className="relative z-10 w-full h-full"
-        >
-          {images.map((image, index) => {
-            if (index === currentSlide) {
-              return (
-                <Image
-                  key={image.id}
-                  image={image}
-                  layout="fill"
-                  objectFit="contain"
-                  className="animate-fadeIn"
-                />
-              );
-            }
-          })}
-        </Swipe>
-      </div>
-      <AiOutlineRight
-        onClick={handleNextSlide}
-        className="absolute right-0 m-auto text-5xl inset-y-1/2 cursor-pointer text-gray-400 z-20"
-      />
-
-      <div className="relative flex justify-center p-2">
-        {images.map((_, index) => {
-          return (
-            <div
-              className={
-                index === currentSlide
-                  ? "h-4 w-4 bg-gray-700 rounded-full mx-2 mb-2 cursor-pointer"
-                  : "h-4 w-4 bg-gray-300 rounded-full mx-2 mb-2 cursor-pointer"
-              }
-              key={index}
-              onClick={() => {
-                setCurrentSlide(index);
-              }}
-            />
-          );
-        })}
-      </div>
-    </div>
+    <CarouselProvider
+      autoPlay={true} // Optional: Enable autoplay
+      infiniteLoop={true} // Optional: Enable infinite loop
+      showStatus={false} // Optional: Hide status indicator
+      showThumbs={false} // Optional: Hide thumbnails (if not needed)
+      renderArrowPrev={(onClickHandler, hasPrev) => (
+        showArrows && hasPrev ? (
+          <button type="button" aria-label="Previous" onClick={onClickHandler}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+            >
+              <path d="M15 8h-1V1l4-4-4-4v1H8c-1.1 0-2 .9-2 2v12c0 1.1 .9 2 2 2h7v-1z" />
+            </svg>
+          </button>
+        ) : (
+          <></> // Empty element for inactive prev button
+        )
+      )}
+      renderArrowNext={(onClickHandler, hasNext) => (
+        showArrows && hasNext ? (
+          <button type="button" aria-label="Next" onClick={onClickHandler}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+            >
+              <path d="M9 16H4v1l4 4-4 4v-1h5c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2H4v1z" />
+            </svg>
+          </button>
+        ) : (
+          <></> // Empty element for inactive next button
+        )
+      )}
+      renderIndicatorDots={(onChange, activeIndex) => (
+        showIndicators && (
+          <div className="carousel-indicators">
+            {items.map((item, index) => (
+              <button
+                key={index}
+                className={index === activeIndex ? 'active' : ''}
+                type="button"
+                onClick={() => onChange(index)}
+                onKeyDown={(event) => {
+                  if (event.key === 'Enter') {
+                    onChange(index);
+                  }
+                }}
+              >
+                <span className="sr-only">Slide {index + 1}</span>
+              </button>
+            ))}
+          </div>
+        )
+      )}
+    >
+      {items.map((item) => (
+        <div key={item.id || item.title} className="carousel-slide">
+          {/* Customize content based on your item data (image, title, description, etc.) */}
+          <img src={item.image} alt={item.title || 'Carousel item'} />
+          {item.title && <h3>{item.title}</h3>}
+          {item.description && <p>{item.description}</p>}
+        </div>
+      ))}
+    </CarouselProvider>
   );
-}
+};
+
+export default Carousel;

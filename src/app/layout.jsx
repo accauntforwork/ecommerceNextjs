@@ -11,73 +11,148 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className }>
+      <body className={inter.className}>
         <div className="max-w-[1600px] m-auto">
-        <header className="bg-black text-white">
-          <div className=" py-2 flex gap-8 justify-end px-40">
-            <a className="cursor-pointer hover:text-amber-800" href="/signIn">Sign in / Guest</a>
-            <a className="cursor-pointer hover:text-amber-800" href="/createAccaunt">Create Account</a>
-          </div>
-        </header>
-        <nav className="bg-gray-300">
-          <div className="py-2 px-40 flex justify-between items-center">
-            <span className="text-3xl font-bold py-2 px-4 rounded-lg bg-blue-600 cursor-pointer hover:bg-blue-800">
-              C
-
-            </span>
-            <ul className="flex gap-4 ">
-              <li>
-                <a className="py-2 px-4 hover:bg-black hover:text-white rounded-lg" href="/">
-                  Home
-                </a>
-              </li>
-              <li>
-                <a className="py-2 px-4 hover:bg-black hover:text-white rounded-lg" href="/about">
-                  About
-                </a>
-              </li>
-              <li>
-                <a className="py-2 px-4 hover:bg-black hover:text-white rounded-lg" href="/product">
-                  Product
-                </a>
-              </li>
-              <li>
-                <a className="py-2 px-4 hover:bg-black hover:text-white rounded-lg" href="/cart">
-                  Cart
-                </a>
-              </li>
-            </ul>
-            <div className="flex gap-4 items-center">
-                <svg
-                  stroke="currentColor"
-                  fill="currentColor"
-                  stroke-width="0"
-                  viewBox="0 0 16 16"
-                  class="cursor-pointer"
-                  height="1em"
-                  width="1em"
-                  xmlns="http://www.w3.org/2000/svg"
+          <header className="bg-black text-white">
+            <div className=" py-2 flex gap-8 justify-end px-40">
+              <a className="cursor-pointer hover:text-amber-800" href="/signIn">
+                Sign in / Guest
+              </a>
+              <a
+                className="cursor-pointer hover:text-amber-800"
+                href="/createAccaunt"
+              >
+                Create Account
+              </a>
+            </div>
+          </header>
+          <nav class="bg-base-200">
+            <div class="navbar px-40">
+              <div class="navbar-start">
+                <a
+                  class="hidden lg:flex btn btn-primary text-3xl items-center active"
+                  href="/"
+                  aria-current="page"
                 >
-                  <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"></path>
-                </svg>
-              <div class="indicator">
-                <svg
-                  stroke="currentColor"
-                  fill="currentColor"
-                  stroke-width="0"
-                  viewBox="0 0 16 16"
-                  className="cursor-pointer"
-                  height="1em"
-                  width="1em"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"></path>
-                </svg>
+                  C
+                </a>
+                <div class="dropdown">
+                  <label tabindex="0" class="btn btn-ghost lg:hidden">
+                    <svg
+                      stroke="currentColor"
+                      fill="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 512 512"
+                      class="h-6 w-6"
+                      height="1em"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM64 256c0-17.7 14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H96c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"></path>
+                    </svg>
+                  </label>
+                  <ul
+                    tabindex="0"
+                    class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-200 rounded-box w-52"
+                  >
+                    <li>
+                      <a class="capitalize active" href="/" aria-current="page">
+                        home
+                      </a>
+                    </li>
+                    <li>
+                      <a class="capitalize" href="/about">
+                        about
+                      </a>
+                    </li>
+                    <li>
+                      <a class="capitalize" href="/products">
+                        products
+                      </a>
+                    </li>
+                    <li>
+                      <a class="capitalize" href="/cart">
+                        cart
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="navbar-center hidden lg:flex">
+                <ul class="menu menu-horizontal">
+                  <li>
+                    <a class="capitalize active" href="/" aria-current="page">
+                      home
+                    </a>
+                  </li>
+                  <li>
+                    <a class="capitalize" href="/about">
+                      about
+                    </a>
+                  </li>
+                  <li>
+                    <a class="capitalize" href="/products">
+                      products
+                    </a>
+                  </li>
+                  <li>
+                    <a class="capitalize" href="/cart">
+                      cart
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div class="navbar-end">
+                <label class="swap swap-rotate">
+                  <input type="checkbox" />
+                  <svg
+                    stroke="currentColor"
+                    fill="currentColor"
+                    stroke-width="0"
+                    viewBox="0 0 16 16"
+                    class="swap-on h-4 w-4"
+                    height="1em"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"></path>
+                  </svg>
+                  <svg
+                    stroke="currentColor"
+                    fill="currentColor"
+                    stroke-width="0"
+                    viewBox="0 0 16 16"
+                    class="swap-off h-4 w-4"
+                    height="1em"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"></path>
+                  </svg>
+                </label>
+                <a class="btn btn-ghost btn-circle btn-md ml-4" href="/cart">
+                  <div class="indicator">
+                    <svg
+                      stroke="currentColor"
+                      fill="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 16 16"
+                      class="h-6 w-6"
+                      height="1em"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"></path>
+                    </svg>
+                    <span class="badge badge-sm badge-primary indicator-item">
+                      1
+                    </span>
+                  </div>
+                </a>
               </div>
             </div>
-          </div>
-        </nav>
-        {children}
+          </nav>
+          {children}
         </div>
       </body>
     </html>
